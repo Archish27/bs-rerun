@@ -2,8 +2,15 @@
 
 Re-run Selenium Sessions on BrowserStack using the RAW Logs of a Session
 
+## Install
+```
+npm i bs-rerun
+
+```
+
+## Config
 ```javascript
-const BSRerun = require('/bs-rerun');
+const BSRerun = require('bs-rerun');
 
 BSRerun.runSession({
     "browserName" : "Chrome",

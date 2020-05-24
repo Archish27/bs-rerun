@@ -23,8 +23,6 @@ function startSession(capabilities) {
   
   session = body.sessionId;
   
-  console.log(getSessionLink());
-  
   return res;
 }
 
