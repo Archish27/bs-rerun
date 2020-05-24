@@ -1,0 +1,12 @@
+{
+  "name": "bs-rerun",
+  "version": "1.0.0",
+  "description": "Re-run Selenium Sessions on BrowserStack using the RAW Logs of a Session",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Rohan Immanuel",
+  "license": "ISC",
+  "dependencies": {
+    "sync-request": "^6.1.0"
+  }
+}
