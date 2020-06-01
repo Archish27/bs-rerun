@@ -8,6 +8,7 @@ function sendRequest(method, url, body) {
   return request(method, url, {
     json: body,
     headers : {
+      "user-agent": "rohanimmanuel/bs-rerun",
       "Authorization" : "Basic " + new Buffer.from(process.env.BROWSERSTACK_USERNAME + ":" + process.env.BROWSERSTACK_ACCESS_KEY).toString("base64")
     }
   });
@@ -15,6 +16,7 @@ function sendRequest(method, url, body) {
 
 // Start Session
 function startSession(capabilities) {
+  console.log("STARTING SESSION");
   var res = sendRequest("POST", HUB + "/session", {
     desiredCapabilities: capabilities
   });
@@ -22,7 +24,7 @@ function startSession(capabilities) {
   var body = JSON.parse(res.getBody('utf8'))
   
   session = body.sessionId;
-  
+  console.log("SESSION STARTED AT: " + getSessionLink() + "");
   return res;
 }
 
@@ -31,12 +33,13 @@ function stopSession() {
   var res = sessionCommand("DELETE", "", {});
   
   session = null;
-  
+  console.log("SESSION STOPED");
   return res;
 }
 
 // Session Command
 function sessionCommand(method, endpoint, body) {
+  if(method != "DELETE" && endpoint != "") console.log(method + "\t" + endpoint);
   return sendRequest(method, HUB + "/session/" + session + endpoint, body);
 }
 

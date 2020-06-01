@@ -12,7 +12,9 @@ function downloadRawLogs(url) {
 function getSessionDetails(url) {
   
   // Prep Logs
+  console.log("Downloading Raw Logs");
   var rawLogs = downloadRawLogs(url);
+  console.log("Analyzing Raw Logs");
   var lineBreak = "\r\n" + rawLogs.substr(0,4);
   var lines = rawLogs.split(lineBreak);
   
@@ -107,7 +109,7 @@ function runSession(capabilities, url) {
   var responces = [];
   var ogRequests = getSessionDetails(url);
   BSHub.startSession(capabilities);
-  console.log(BSHub.getSessionLink());
+  
   ogRequests.forEach(req => {
     if(req.hasOwnProperty('update')) {
       if(req.endpoint.includes('/element/')) {
